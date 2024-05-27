@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tin tức khoa học</title>
+  </head>
+  <body></body>
+  <script>
+    //fetch data from api and render to html
+    fetch(
+      "https://baomoi.com/_next/data/XFOpqU5zND_8GAiKi_Io6/category/khoa-hoc-cong-nghe.json?slug=khoa-hoc-cong-nghe"
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        let news = data.news;
+        let html = "";
+        news.forEach((item) => {
+          html += `
+                <div>
+                    <img src="${item.image}" alt="${item.title}">
+                    <h2>${item.title}</h2>
+                    <div>
+                        <img src="${item.publisher.logo}" alt="${item.publisher.name}">
+                        
+                    </div>
+                </div>
+            `;
+        });
+        document.body.innerHTML = html;
+      });
+  </script>
+</html>
